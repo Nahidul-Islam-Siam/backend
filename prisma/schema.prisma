@@ -17,9 +17,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("users")
+  @@map("users") // make sure your Mongo collection is actually "users"
 }
-
 
 model Expense {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -29,11 +28,11 @@ model Expense {
   date     DateTime
   type     String @default("Expense")
 
-  User   User?   @relation(fields: [userId], references: [id])
   userId String? @db.ObjectId
+  User   User?   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("expenses")
+  @@map("expenses") // check Mongo collection name
 }
